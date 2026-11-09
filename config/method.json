@@ -1,0 +1,21 @@
+{
+  "stage1": {
+    "planes": ["axial", "sagittal", "coronal"],
+    "sample_fractions": [0.25, 0.5, 0.75],
+    "envelope_margin_mm": 15.0,
+    "roi_margin_mm": 20.0,
+    "longitudinal_fallback_union": true,
+    "epochs": 100
+  },
+  "stage2": {
+    "target_spacing_reference": [0.5547, 0.5, 0.5547],
+    "patch_size_reference": [80, 256, 112],
+    "reference_transpose_forward": [1, 0, 2],
+    "batch_size": 1,
+    "epochs": 250,
+    "iterations_per_epoch": 250,
+    "validation_iterations_per_epoch": 50,
+    "local_hidden_channels": 16,
+    "local_gate_initial_bias": -1.0
+  }
+}
