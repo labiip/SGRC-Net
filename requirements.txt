@@ -1,0 +1,8 @@
+# Install the PyTorch build for your CUDA driver before these requirements.
+# nnU-Net 2.5.2 provides the 3-D loader/transform API used by these trainers.
+nnunetv2==2.5.2
+dynamic-network-architectures==0.3.1
+nibabel>=5.2,<6
+scikit-image>=0.24,<0.26
+threadpoolctl>=3.1,<4
+-e .
