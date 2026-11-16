@@ -10,12 +10,17 @@ import sgrc_net
 def main():
     if version("nnunetv2") != "2.5.2":
         raise RuntimeError("Use nnunetv2==2.5.2; this implementation uses its loader API.")
-    source = Path(sgrc_net.__file__).parent / "nnunet" / "nnUNetTrainerSGRCNet.py"
-    destination = Path(inspect.getfile(trainer_module)).parent / source.name
-    if destination.exists() and destination.read_bytes() != source.read_bytes():
-        raise FileExistsError(destination)
-    shutil.copy2(source, destination)
-    print(f"Installed {destination.name}")
+    source_dir = Path(sgrc_net.__file__).parent / "nnunet"
+    destination_dir = Path(inspect.getfile(trainer_module)).parent
+    names = ("nnUNetTrainerSGRCNet.py", "nnUNetTrainerSGRCNetCoW.py")
+    for name in names:
+        source = source_dir / name
+        destination = destination_dir / name
+        if destination.exists() and destination.read_bytes() != source.read_bytes():
+            raise FileExistsError(destination)
+    for name in names:
+        shutil.copy2(source_dir / name, destination_dir / name)
+        print(f"Installed {name}")
 
 
 if __name__ == "__main__":
